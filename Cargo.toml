@@ -24,6 +24,9 @@ default = ["clipboard", "links"]
 ## If disabled a clipboard will be simulated so you can still copy/paste within the egui app.
 clipboard = ["egui-winit/clipboard"]
 
+# Serde support
+serde = ["egui-winit/serde"]
+
 ## Enable opening links in a browser when an egui hyperlink is clicked.
 links = ["egui-winit/links"]
 
