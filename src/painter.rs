@@ -1,15 +1,14 @@
 #![allow(deprecated)] // legacy implement_vertex macro
 #![allow(semicolon_in_expressions_from_macros)] // glium::program! macro
 
-use egui_winit::egui;
-use egui_winit::egui::{
+use egui::{
     epaint::{textures::TextureFilter, Primitive},
     TextureOptions,
 };
 use glium::glutin::surface::WindowSurface;
 
 use {
-    egui_winit::egui::{emath::Rect, epaint::Mesh},
+    egui::{emath::Rect, epaint::Mesh},
     glium::{
         implement_vertex,
         index::PrimitiveType,

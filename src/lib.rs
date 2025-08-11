@@ -13,12 +13,11 @@
 #![forbid(unsafe_code)]
 
 mod painter;
-use glium::{glutin::surface::WindowSurface, winit};
+use glium::glutin::surface::WindowSurface;
 pub use painter::Painter;
+use raw_window_handle::HasDisplayHandle;
 
 pub use egui_winit;
-
-use egui_winit::{egui, egui::ViewportId, winit::event_loop::EventLoop};
 pub use egui_winit::EventResponse;
 
 // ----------------------------------------------------------------------------
@@ -33,11 +32,11 @@ pub struct EguiGlium {
 }
 
 impl EguiGlium {
-    pub fn new<E>(
-        viewport_id: ViewportId,
+    pub fn new(
+        viewport_id: egui::ViewportId,
         display: &glium::Display<WindowSurface>,
-        window: &glium::winit::window::Window,
-        event_loop: &EventLoop<E>,
+        window: &winit::window::Window,
+        event_loop: &dyn HasDisplayHandle,
     ) -> Self {
         let painter = crate::Painter::new(display);
 
@@ -59,7 +58,7 @@ impl EguiGlium {
         }
     }
 
-    pub fn egui_ctx(&self) -> &egui_winit::egui::Context {
+    pub fn egui_ctx(&self) -> &egui::Context {
         self.egui_winit.egui_ctx()
     }
 
@@ -74,9 +73,9 @@ impl EguiGlium {
     /// Runs the main egui render.
     ///
     /// Call [`Self::paint`] later to paint.
-    pub fn run(&mut self, window: &glium::winit::window::Window, run_ui: impl FnMut(&egui_winit::egui::Context)) {
+    pub fn run(&mut self, window: &winit::window::Window, run_ui: impl FnMut(&egui::Context)) {
         let raw_input = self.egui_winit.take_egui_input(window);
-        let egui_winit::egui::FullOutput {
+        let egui::FullOutput {
             platform_output,
             textures_delta,
             shapes,
