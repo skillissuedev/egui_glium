@@ -27,6 +27,12 @@ clipboard = ["egui-winit/clipboard"]
 ## Enable opening links in a browser when an egui hyperlink is clicked.
 links = ["egui-winit/links"]
 
+## Serde support
+serde = ["egui-winit/serde"]
+
+
+
+
 
 [dependencies]
 egui = { version = "0.31.1", default-features = false, features = [
