@@ -43,7 +43,7 @@ ahash = { version = "0.8.1", default-features = false, features = [
   "std",
 ] }
 bytemuck = "1.7"
-glium = "0.35.0"
+glium = "0.36.0"
 #winit = "0.30.4"
 egui-winit = { git = "https://github.com/emilk/egui" }
 log = "0.4.21"
